@@ -5,7 +5,11 @@ interface ReportBug {
   detail?: string,
   message?: string,
   timestamp?: number,
-  extra?: string
+  extra?: string,
+  pagePath?: string,
+  pageName?: string,
+  clientHost: string,
+  brower: string
 }
 
 export {

@@ -27,6 +27,18 @@ const Problem = db.define('problem', {
   timestamp: {
     type: sequelize.DataTypes.BIGINT,
     defaultValue: new Date().valueOf()
+  },
+  pageName: {
+    type: sequelize.DataTypes.CHAR
+  },
+  pagePath: {
+    type: sequelize.DataTypes.CHAR
+  },
+  clientHost: {
+    type: sequelize.DataTypes.CHAR
+  },
+  brower: {
+    type: sequelize.DataTypes.CHAR
   }
 }, {
   tableName: 'bug'
