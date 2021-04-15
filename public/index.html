@@ -1,12 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    .logo {
+      animation: block-ball 3s linear infinite;
+      stroke-dasharray: 300;
+      stroke-dashoffset: 300;
+    }
+
+    .line {
+      fill:none;stroke:#525252;stroke-width:5;
+    }
+
+    @keyframes block-ball {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+  </style>
 </head>
+
 <body>
   <h1>BUG</h1>
+  <button id="btn">click</button>
+  <div id="loading-page">
+    <svg t="1618380660894" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+         p-id="3912" width="300" height="300">
+      <g class="logo">
+        <path class="line" d="M666.56 865.44H238.56V157.44h428z m-364-64h300V221.44H302.56z" p-id="3913"></path>
+        <path class="line"
+              d="M782.08 721.44h-64v-248H624v-64h158.08v312zM476.48 865.44h-48a64 64 0 0 1-64-64V544a64 64 0 0 1 64-64h48a64 64 0 0 1 64 64v257.44a64 64 0 0 1-64 64z m-48-321.44v257.44h48V544z"
+              p-id="3914"></path>
+        <path class="line" d="M176 801.44h672v64H176zM382.56 269.44h140v64h-140zM382.56 367.52h140v64h-140z" p-id="3915">
+        </path>
+      </g>
+    </svg>
+  </div>
+  <script>
+    const btn = document.getElementById('btn')
+    // const xhr = new XMLHttpRequest()
+    btn.addEventListener('click', () => {
+      fetch('http://192.168.1.21:9200/api/report/bug', {
+        method: 'POST',
+        body: JSON.stringify({
+          time: '2012',
+          data: 'test'
+        })
+      }).then((res) => {
+        console.log(res.json().then((res) => {
+          console.log(res)
+        }))
+      })
+    })
+  </script>
 </body>
+
 </html>
