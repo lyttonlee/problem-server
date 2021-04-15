@@ -31,7 +31,11 @@ app.use(async (ctx, next) => {
   if (ctx.request.url.startsWith('/api/report')) {
     // 报告数据时允许跨域
     ctx.append('Access-Control-Allow-Origin', '*')
-    // ctx.set('Cache-Control', 'no-store') // 设置相应头
+    ctx.append('Access-Control-Allow-Methods', 'POST, OPTIONS')
+    ctx.append('Access-Control-Allow-Headers', 'token, Content-Type,Content-Length,Accept')
+    if (ctx.request.method === 'OPTIONS') {
+      ctx.status = 200
+    }
   }
   await next()
 })
@@ -47,6 +51,14 @@ app.use(KoaStatic(path.join(__dirname, '../public'), {
 }))
 
 app.use(router.routes()).use(router.allowedMethods())
+
+// 捕获错误
+app.use((ctx, next) => {
+  if (ctx.customError) {
+    ctx.status = 500
+    ctx.body = ctx.customError.message || '服务器错误'
+  }
+})
 
 app.listen(port, () => {
   console.log(`the server is running on port:${port}`)
