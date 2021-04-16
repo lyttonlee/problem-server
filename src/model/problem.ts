@@ -1,7 +1,8 @@
 import { db } from '../db/db'
+import { ReportBug } from '../interface/requestBody'
 import sequelize = require('sequelize')
 
-const Problem = db.define('problem', {
+const Problem = db.define<ReportBug>('problem', {
   id: {
     type: sequelize.DataTypes.INTEGER,
     primaryKey: true,

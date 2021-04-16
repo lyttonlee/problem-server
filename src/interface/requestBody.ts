@@ -1,4 +1,6 @@
-interface ReportBug {
+import { Model } from 'sequelize/types'
+
+interface ReportBug extends Model {
   id?: number,
   type: string,
   projectId: number,
@@ -12,6 +14,12 @@ interface ReportBug {
   brower: string
 }
 
+interface TokenPayload {
+  id: number,
+  username: string
+}
+
 export {
-  ReportBug
+  ReportBug,
+  TokenPayload
 }
