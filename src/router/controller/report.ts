@@ -1,6 +1,7 @@
 import { Problem } from '../../model/problem'
 import { ReportBug } from '../../interface/requestBody'
 import koa = require('koa')
+import { createSuccessResponse } from '../../utils/response'
 
 // 上报错误
 const reportBug = async (ctx: koa.ParameterizedContext, next: koa.Next) => {
@@ -26,11 +27,18 @@ const queryBugReports = async (ctx: koa.ParameterizedContext, next: koa.Next) =>
   try {
     const params = ctx.request.query
     console.log(params)
-    const res = await Problem.findAll()
+    const res = await Problem.findAll({
+      where: {
+        projectId: parseInt(params.id as string)
+      }
+    })
+    console.log(res.length)
     if (res) {
-      ctx.body = res
+      console.log('do')
+      ctx.body = createSuccessResponse(0, '成功！', res)
     }
   } catch (error) {
+    console.log(error)
     ctx.customError = error
     next()
   }

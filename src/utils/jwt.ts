@@ -21,16 +21,17 @@ const createToken = (id: number, username: string): string => {
   }, SK)
 }
 
-const jwt = (ctx: ParameterizedContext, next: Next) => {
+const jwt = async (ctx: ParameterizedContext, next: Next) => {
   // 类型断言
   const token = (ctx.request.headers.token as string || ctx.request.header.token as string)
+  console.log(token)
   if (token) {
     const payload = verify(token, SK)
     console.log(payload)
     if (payload) {
       ctx.userInfo = (payload as TokenPayload)
     }
-    next()
+    await next()
   } else {
     ctx.status = 401
     ctx.body = createErrorResponse(401, '鉴权失败，请重新登录！')
