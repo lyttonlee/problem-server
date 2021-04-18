@@ -30,7 +30,9 @@ const queryBugReports = async (ctx: koa.ParameterizedContext, next: koa.Next) =>
     const res = await Problem.findAll({
       where: {
         projectId: parseInt(params.id as string)
-      }
+      },
+      limit: params.pagination.pageSize,
+      
     })
     console.log(res.length)
     if (res) {
