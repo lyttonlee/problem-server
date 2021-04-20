@@ -26,13 +26,16 @@ const reportBug = async (ctx: koa.ParameterizedContext, next: koa.Next) => {
 const queryBugReports = async (ctx: koa.ParameterizedContext, next: koa.Next) => {
   try {
     const params: reportsQuery = ctx.request.query as reportsQuery
+    if (!params.currentPage) {
+      params.currentPage = '1'
+    }
     console.log(params)
     const res = await Problem.findAndCountAll({
       where: {
         projectId: parseInt(params.projectId)
       },
       limit: 10,
-      offset: 10 * parseInt(params.currentPage),
+      offset: 10 * (parseInt(params.currentPage) - 1),
       order: [
         ['timestamp', 'desc']
       ]
