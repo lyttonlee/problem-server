@@ -1,3 +1,4 @@
+import { ParsedUrlQuery } from 'querystring'
 import { Model } from 'sequelize/types'
 
 interface ReportBug extends Model {
@@ -19,7 +20,13 @@ interface TokenPayload {
   username: string
 }
 
+interface reportsQuery extends ParsedUrlQuery {
+  projectId: string,
+  currentPage?: string
+}
+
 export {
   ReportBug,
-  TokenPayload
+  TokenPayload,
+  reportsQuery
 }
