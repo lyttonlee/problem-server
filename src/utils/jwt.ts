@@ -27,7 +27,6 @@ const jwt = async (ctx: ParameterizedContext, next: Next) => {
   console.log(token)
   if (token) {
     const payload = verify(token, SK)
-    console.log(payload)
     if (payload) {
       ctx.userInfo = (payload as TokenPayload)
     }

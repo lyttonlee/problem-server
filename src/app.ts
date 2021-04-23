@@ -27,7 +27,7 @@ app.use(Logger())
 
 // set cache
 app.use(async (ctx, next) => {
-  console.log(ctx.request)
+  // console.log(ctx.request)
   if (ctx.request.url.startsWith('/api/report')) {
     // 报告数据时允许跨域
     ctx.append('Access-Control-Allow-Origin', '*')

@@ -10,9 +10,7 @@ const reportBug = async (ctx: koa.ParameterizedContext, next: koa.Next) => {
       clientHost: ctx.request.headers.origin || ctx.request.headers.referer,
       brower: ctx.request.header['user-agent'] || ctx.request.headers['user-agent']
     })
-    // console.log(param)
     const problem = await Problem.create(param)
-    // console.log(problem)
     if (problem) {
       ctx.body = problem
     }
@@ -42,7 +40,6 @@ const queryBugReports = async (ctx: koa.ParameterizedContext, next: koa.Next) =>
     })
     ctx.body = createSuccessResponse(0, '成功！', res)
   } catch (error) {
-    console.log(error)
     ctx.customError = error
     next()
   }
