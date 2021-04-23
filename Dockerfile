@@ -1,5 +1,7 @@
 FROM node:latest
-RUN npm install -g yarn \
-    && yarn install
+RUN mkdir app
+WORKDIR /app
+COPY . /app
 EXPOSE 9200
+RUN yarn install
 CMD [ "yarn", "run", "start" ]
