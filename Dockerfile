@@ -6,7 +6,7 @@ RUN rm -rf public/* \
     && yarn install \
     && yarn run build \
     && cd / \
-    && mkidr public \
+    && mkdir public \
     && cp -rf problem-web/dist/* public \
     && rm -rf problem-web/* \
     && yarn install
