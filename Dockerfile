@@ -11,4 +11,4 @@ RUN rm -rf public/* \
     && rm -rf problem-web/* \
     && yarn install
 EXPOSE 9200
-CMD [ "node", "src/app.ts" ]
+CMD [ "yarn", "start" ]
