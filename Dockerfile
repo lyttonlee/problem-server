@@ -6,8 +6,8 @@ RUN mkdir web \
     && cd problem-web \
     && yarn install \
     && yarn run build \
-    && cp -rf dist/* /public \
     && cd / \
+    && cp -rf web/dist/* /public \
     && yarn install
 EXPOSE 9200
 CMD [ "node", "src/app.ts" ]
